@@ -1,29 +1,39 @@
 package Base;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.NewAccountPage;
+import pages.NewCustomerPage;
 
 public class NewAccountTest {
-    @Test
-    public void SetUp() {
-        System.setProperty("webdriven.chrome.driver", "resources/chromedriven.exe");
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
+    WebDriver driver;
+    protected NewAccountPage newAccountPage;
+
+    @BeforeEach
+    public void refresh() {
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\FinalTestGuru\\chromedriver.exe");
+        driver = new ChromeDriver();
         driver.get("http://www.demo.guru99.com/V4/manager/addAccount.php");
-        WebElement customerId=driver.findElement(By.name("cusid"));
-        WebElement accountType=driver.findElement(By.name("selaccount"));
-        WebElement initialDeposit=driver.findElement(By.name("inideposit"));
-        WebElement submit=driver.findElement(By.name("button2"));
-        customerId.sendKeys("TN001");
-        accountType.sendKeys("Current");
-        initialDeposit.sendKeys("012345");
-        submit.click();
-        String actualUrl="http://www.demo.guru99.com/V4/manager/Managerhomepage.php";
-        String expectedUrl= driver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl,actualUrl);
     }
+
+    @Test
+    @DisplayName("TC001")
+    public void TestCase001() {
+        newAccountPage = new NewAccountPage(driver);
+        newAccountPage.setCustomer_id("TN001");
+        newAccountPage.setAccountType("Current");
+        newAccountPage.setInitialDeposit("123000");
+        newAccountPage.clickSubmitButton();
+    }
+
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }

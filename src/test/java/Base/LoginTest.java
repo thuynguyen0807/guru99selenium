@@ -1,28 +1,38 @@
 package Base;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.LoginPage;
 
 public class LoginTest {
+    WebDriver driver;
+    protected LoginPage loginPage;
+
+    @BeforeEach
+    public void refresh() {
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\FinalTestGuru\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("http://www.demo.guru99.com/V4/");
+    }
 
     @Test
-    public void SetUp() {
-        System.setProperty("webdriven.chrome.driver", "resources/chromedriven.exe");
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.demo.guru99.com/V4/");
-        WebElement username=driver.findElement(By.name("uid"));
-        WebElement password=driver.findElement(By.name("password"));
-        WebElement login=driver.findElement(By.name("btnLogin"));
-        username.sendKeys("mngr332012");
-        password.sendKeys("anyvera");
-        login.click();
-        String actualUrl="http://www.demo.guru99.com/V4/manager/Managerhomepage.php";
-        String expectedUrl= driver.getCurrentUrl();
-        Assert.assertEquals(expectedUrl,actualUrl);
+    @DisplayName("TC001")
+    public void TestCase001() {
+        loginPage = new LoginPage(driver);
+        loginPage.setUserName("mngr332012");
+        loginPage.setPassword("anyvera");
+        loginPage.clickLoginButton();
+        Assertions.assertEquals("http://www.demo.guru99.com/V4/manager/Managerhomepage.php", driver.getCurrentUrl());
     }
+
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
