@@ -31,8 +31,37 @@ public class LoginTest {
         Assertions.assertEquals("http://www.demo.guru99.com/V4/manager/Managerhomepage.php", driver.getCurrentUrl());
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @Test
+    @DisplayName("TC002")
+    public void TestCase002() {
+        loginPage = new LoginPage(driver);
+        loginPage.setUserName("mngr332012");
+        loginPage.setPassword("123");
+        loginPage.clickLoginButton();
+        Assertions.assertEquals("http://www.demo.guru99.com/V4/manager/Managerhomepage.php", driver.getCurrentUrl());
+    }
+   @Test
+    @DisplayName("TC003")
+    public void TestCase003() {
+        loginPage = new LoginPage(driver);
+        loginPage.setUserName("");
+        loginPage.setPassword("UnUqEcE");
+        loginPage.clickLoginButton();
+        Assertions.assertEquals("http://www.demo.guru99.com/V4/manager/Managerhomepage.php", driver.getCurrentUrl());
+    }
+
+    @Test
+    @DisplayName("TC004")
+    public void TestCase004() {
+        loginPage = new LoginPage(driver);
+        loginPage.setUserName("mngr330087");
+        loginPage.setPassword("");
+        loginPage.clickLoginButton();
+        Assertions.assertEquals("http://www.demo.guru99.com/V4/manager/Managerhomepage.php", driver.getCurrentUrl());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }

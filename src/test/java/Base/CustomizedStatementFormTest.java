@@ -30,9 +30,42 @@ public class CustomizedStatementFormTest {
         customizedStatementFormPage.setTfNumtransaction("123123");
         customizedStatementFormPage.clickSubmitButton();
     }
+    @Test
+    @DisplayName("TC002")
+    public void TestCase002() {
+        customizedStatementFormPage = new CustomizedStatementFormPage(driver);
+        customizedStatementFormPage.setAccountNo("123TT");
+        customizedStatementFormPage.setFDate("01/01/2020");
+        customizedStatementFormPage.setTDate("01/01/2021");
+        customizedStatementFormPage.setTfAmountlowerlimit("2000");
+        customizedStatementFormPage.setTfNumtransaction("123456");
+        customizedStatementFormPage.clickSubmitButton();
+    }
+    @Test
+    @DisplayName("TC003")
+    public void TestCase003() {
+        customizedStatementFormPage = new CustomizedStatementFormPage(driver);
+        customizedStatementFormPage.setAccountNo("123TT");
+        customizedStatementFormPage.setFDate("01/01/2020");
+        customizedStatementFormPage.setTDate("01/01/2021");
+        customizedStatementFormPage.setTfAmountlowerlimit("2000");
+        customizedStatementFormPage.setTfNumtransaction("");
+        customizedStatementFormPage.clickSubmitButton();
+    }
+    @Test
+    @DisplayName("TC004")
+    public void TestCase004() {
+        customizedStatementFormPage = new CustomizedStatementFormPage(driver);
+        customizedStatementFormPage.setAccountNo("123TT");
+        customizedStatementFormPage.setFDate("01/01/2020");
+        customizedStatementFormPage.setTDate("01/01/2021");
+        customizedStatementFormPage.setTfAmountlowerlimit("");
+        customizedStatementFormPage.setTfNumtransaction("123123");
+        customizedStatementFormPage.clickSubmitButton();
+    }
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }

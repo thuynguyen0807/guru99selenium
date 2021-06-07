@@ -26,14 +26,43 @@ public class NewAccountTest {
     @DisplayName("TC001")
     public void TestCase001() {
         newAccountPage = new NewAccountPage(driver);
-        newAccountPage.setCustomer_id("TN001");
+        newAccountPage.setCustomer_id("001");
         newAccountPage.setAccountType("Current");
         newAccountPage.setInitialDeposit("123000");
         newAccountPage.clickSubmitButton();
     }
+    @Test
+    @DisplayName("TC002")
+    public void TestCase002() {
+        newAccountPage = new NewAccountPage(driver);
+        newAccountPage.setCustomer_id("TN002");
+        newAccountPage.setAccountType("Current2");
+        newAccountPage.setInitialDeposit("123010");
+        newAccountPage.clickSubmitButton();
+    }
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @Test
+    @DisplayName("TC003")
+    public void TestCase003() {
+        newAccountPage = new NewAccountPage(driver);
+        newAccountPage.setCustomer_id("TN003");
+        newAccountPage.setAccountType("Current3");
+        newAccountPage.setInitialDeposit("");
+        newAccountPage.clickSubmitButton();
+    }
+
+    @Test
+    @DisplayName("TC004")
+    public void TestCase004() {
+        newAccountPage = new NewAccountPage(driver);
+        newAccountPage.setCustomer_id("004");
+        newAccountPage.setAccountType("");
+        newAccountPage.setInitialDeposit("113000");
+        newAccountPage.clickSubmitButton();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }

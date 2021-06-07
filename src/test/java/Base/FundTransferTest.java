@@ -1,5 +1,6 @@
 package Base;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,9 +32,39 @@ public class FundTransferTest {
         fundTransferPage.setDesc("met moi qua");
         fundTransferPage.clickSubmitButton();
     }
+    @Test
+    @DisplayName("TC002")
+    public void TestCase002() {
+        fundTransferPage = new FundTransferPage(driver);
+        fundTransferPage.setPayersAccount("123");
+        fundTransferPage.setPayeeAccount("1030");
+        fundTransferPage.setAmmount("10003");
+        fundTransferPage.setDesc("met qua");
+        fundTransferPage.clickSubmitButton();
+    }
+    @Test
+    @DisplayName("TC003")
+    public void TestCase003() {
+        fundTransferPage = new FundTransferPage(driver);
+        fundTransferPage.setPayersAccount("123");
+        fundTransferPage.setPayeeAccount("");
+        fundTransferPage.setAmmount("10300");
+        fundTransferPage.setDesc("moi qua");
+        fundTransferPage.clickSubmitButton();
+    }
+    @Test
+    @DisplayName("TC004")
+    public void TestCase004() {
+        fundTransferPage = new FundTransferPage(driver);
+        fundTransferPage.setPayersAccount("423");
+        fundTransferPage.setPayeeAccount("4000");
+        fundTransferPage.setAmmount("");
+        fundTransferPage.setDesc("met moi ");
+        fundTransferPage.clickSubmitButton();
+    }
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }
